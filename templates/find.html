@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>个人信息</title>
+	<link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+	<script type="text/javascript" src="static/jquery.min.js"></script>
+	<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+</head>
+	<style type="text/css">
+		body{
+			margin: auto;
+			/*color: #fff;*/
+		}
+		#d1{
+			overflow: hidden;
+			height: 100%;
+			background-image: url('static/img/流星.gif');
+			
+		}
+		#d2{
+			width: 750px;
+			height: 100%;
+			margin: 40px auto;
+			border:1px solid red;
+			border-radius: 25px;
+			/*background-image: url('static/img/流星.jpg');*/
+			background-color: #fff;
+			opacity: 0.8;
+		}
+		ul{
+			margin-top: 50px;
+		}
+		li{
+			list-style: none;
+		}
+		li>img{
+			width: 180px;
+			height: 180px;
+			margin: -240px 50px 0 0;
+			border-radius: 50%;
+			float: right;
+		}
+		#p1{
+			float: right;
+			font-size: 20px;
+			margin: -135px 107px 0 0 ;
+			
+		}
+		#sp1>video{
+			width: 220px;
+			height: 300px;
+			display:block;
+			float: left;
+			margin-left: 23px;
+			margin-top: 30px;
+		}
+		#sp2>video{
+			width: 800px;
+			height: 500px;
+			display:block;
+			float: left;
+			margin-left: 23px;
+			margin-top: 30px;
+		}
+	</style>
+<body>
+	<div id="d1">
+		<div id="d2">
+			<ul>
+				<li>
+					<p>ID:{{context.info.0.auth_short_id}}</p>
+				</li>
+				<li>
+					<p>昵称: {{context.info.0.auth_nickname}}</p>
+				</li>
+				<li>
+					<p>年龄:{{context.info.0.auth_birthday_description}}</p>
+				</li>
+				<li>
+					<p>城市:{{context.info.0.auth_city}}</p>
+				</li>
+				<li>
+					<p>荣誉:{{context.info.0.auth_hotsoon_verified_reason}}</p>
+				</li>
+				<li>
+					<p>个性签名√:{{context.info.0.auth_signature}}</p>
+				</li>
+				<li>
+					<img src="{{context.info.0.auth_avatar_jpg}}">
+					
+				</li>
+			</ul>
+
+			
+			<div>
+				{%for i in context.info%}
+					<span id="sp1">
+						<video src="/static/geren_mp4/{{i.share_title}}.mp4" controls=""/>
+						<!-- <video src="/static/geren_mp4/{{i.video_download_url}}.mp4" controls=""/> -->
+					</span>
+				{%endfor%}
+
+			</div>
+			<span id="sp2">
+				<video src="/static/decade/第03话 超绝_高清.mp4" controls=""/>
+			</span> 
+		</div>
+		
+		
+	</div>
+</body>
+</html>

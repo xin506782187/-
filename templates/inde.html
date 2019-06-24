@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+	<script type="text/javascript" src="static/jquery.min.js"></script>
+	<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<!-- <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</a> -->
+	<!-- <a href="#" id="btn">删除</a> -->
+	<div class = “easyui-panel” title = “Register” style = "width：400px; panding：30 px 60 px " >     
+		<div style =" margin - top ：50px " >  
+			岗位：<input class = "easyui-textbox" id="post" style = "width：100％; height：32px" >   
+			地点：<input class = "easyui-textbox" id="city" style = "width：100％; height：32px" >  
+			<a href="#" class= "easyui-linkbutton" id="pp" data-options = "iconCls:'icon-save'"> 搜索</a> 
+		</div>
+	</div>
+	<table id='tb' style="width: 100%">
+		<thead>
+			<tr>
+				<th field='zp_title'>职位</th>
+				<th field='zp_money'>月薪</th>
+				<th field='zp_conpany'>公司</th>
+				<th field='zp_address'>地址</th>
+				<th field='zp_exp'>工作经验</th>
+				<th field='zp_edu'>学历要求</th>
+				<th field='zp_num'>招人数</th>
+				<th field='zp_time'>发布日期</th>
+				<th field='zp_treat'>福利</th>
+				<th field='zp_off_addr'>上班地址</th>
+				<th field='Company_nature'>公司性质</th>
+				<th field='company_size'>公司规模</th>
+				<th field='Company_industry'>公司类型</th>
+				<th field='zp_FC'>职能类别</th>
+				<th field='zp_Keyword'>关键字</th>
+			</tr>
+
+		</thead>
+
+	</table>
+</body>
+	<script type="text/javascript">
+		$(function(){
+			$('#tb').datagrid({
+				style:'width: 400px;height: 250px',
+				title:"列表标题",
+				url:'/data?keyword='+$('#post').val()+'&city='+$('#city').val(),
+				method:'get',
+				pagination:true,
+				rownumbers:true,
+				singleSelect:true,
+
+				// total:100,
+				// pageSize: 10,
+    // 			pageList: [10,20,30],
+			})
+			$('#pp').click(function(){
+				// alert($('#post').val())
+				// alert($('#city').val())
+				$('#tb').datagrid('options').url='/data?keyword='+$('#post').val()+'&city='+$('#city').val()
+				$('#tb').datagrid('load')
+			})
+			
+		})
+
+	</script>
+</html>
+
+

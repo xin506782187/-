@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>火山小视频</title>
+	<link rel="stylesheet" type="text/css" href="static/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="static/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="static/film_search/css/base.css">
+	<link rel="stylesheet" type="text/css" href="static/film_search/css/search-list.css">
+	<script type="text/javascript" src="static/jquery.min.js"></script>
+	<script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="static/film_search/js/jq.js"></script>
+	<script type="text/javascript" src="static/film_search/js/underscore.js"></script>
+	<script type="text/javascript" src="static/film_search/js/adjust.js"></script>
+	<script src="https://cdn.jsdelivr.net/hls.js/latest/hls.min.js"></script>
+	<style type="text/css">
+		#img{
+			width: 300px;
+			height:549px;
+		}
+		p{
+			/*color: #fff;*/
+			font-size: 15px;
+			line-height: 50px;
+			margin-left: 20px;
+			
+		}
+		table{
+			
+			margin: 0 auto;
+
+		}
+		#top{
+			width: 100%;
+			background-image: url('static/img/玫瑰.png');
+		}
+		h1{
+			font-size: 60px;
+		}
+		#img1{
+			width: 500px;
+			height: 220px;
+			margin-bottom: 100px;
+		}
+		#d1{
+			width: 500px;
+			height: 220px;
+			margin:0 auto;
+			
+		}
+		
+		#td1{
+			/*border:1px solid yellow;*/
+			
+		}
+		#d2{
+			width: 650px;
+			height: 660px;
+			margin: 20px auto;
+			border: 2px solid #ccc;
+			border-radius: 3%;
+			padding: 50px;
+			background-color: #fff;
+			opacity: 0.75;
+		}
+		#img2{
+			width: 64px;
+			height: 64px;
+			border-radius: 50%;
+			margin: -20px 15px 0 5px;
+		}
+		#p1{
+			
+			width: 50px;
+			height: 50px;
+			color: #fff;
+			font-size: 12px;
+			margin-left: 180px;
+			margin-top: -50px;
+			background-color: red;
+			border-radius: 100%;
+		}
+		input{
+			width: 200px;
+			height: 30px;
+			border-radius: 10px;
+		}
+		#d3{
+			float: right;
+			margin-top: -120px;
+			margin-right: 130px;
+
+		}
+		
+		#a1{
+			float: right;
+			margin-left: 8px;
+			cursor: pointer;
+			width: 28px;
+			height: 27px;
+			border-radius: 100%;
+			background-image: url('static/img/放大镜1.png');
+		}
+		#a2{
+			float: right;
+			width: 50px;
+			height: 50px;
+			background-color: red;
+			margin-top: -52px;
+			margin-right: 146px;
+			border-radius: 100%;
+			
+		}
+		#a2>p{
+			margin: -3px 6px;
+		}
+		#a2>img{
+			border-radius: 50%;
+			
+		}
+	</style>
+</head>
+<body>
+	<div id='top'>
+		<div id='d1'>
+			<img id='img1' src="static/img/huoshan.png">
+		</div>
+		<div id="d3">
+			<input type="text" id="inpu">
+			<a href='javascript:;' id="a1"></a>
+			
+		</div>
+		<a href="http://localhost:5001/list" id="a2">
+			<img src="static/img/刷新icon.png">
+		</a>
+		{%for i in context.info%}
+			<div id='d2'>
+				<table>
+					<tr>
+						<td>
+							<video id='img' src="/static/MP4/{{i.share_title}}.mp4" controls=""></video>
+							<!-- <video id='img' src="{{i.video_download_url}}" controls=""></video> -->
+						</td>
+
+					   	<td id='td1'>
+					   		<!-- <button id='p1'>查看评论</button>
+					   		<script type="text/javascript">
+								$('#p1').click(function(){
+									alert('<span>aa</span>')
+								})
+
+							</script> -->
+					   		<p>
+					   			<a href="http://localhost:5001/search?name={{i.auth_nickname}}">
+					   				<img id='img2' src="{{i.auth_avatar_jpg}}">{{i.auth_nickname}}
+					   			</a>
+					   		</p>
+					   		<p>ID:{{i.auth_short_id}}<p/>
+					   		<p>年龄:{{i.auth_birthday_description}}<p/>
+					   		<p>💓💖💕💘💝💟：{{i.stats_digg_count}}</p>
+					   		<p>火力值:{{i.auth_fan_ticket_count}}<p/>
+					   		<p>播放次数:{{i.stats_play_count}}<p/>
+					   		<p style="line-height: 20px;">个性签名√:{{i.auth_signature}}</p><br/>
+						   	<p style="line-height: 20px;">{{i.description}}<p/>
+						   	
+						   	
+						   	
+						</td>
+				   	</tr>
+				
+				</table>
+			</div>
+		{% endfor%}
+	</div>
+		
+</body>
+	<script type="text/javascript">
+		$('#a1').click(function(){
+			var url = 'http://localhost:5001/search?name=' + $('#inpu').val()
+			window.location.href = url;
+		})
+
+	</script>
+</html>
